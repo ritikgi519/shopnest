@@ -1,10 +1,18 @@
+// 1. Force Node to use Google DNS FIRST to bypass Windows/ISP SRV lookup blocks
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '1.1.1.1']);
+
+// 2. Imports
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const connectDB = require('./config/db');
 const path = require('path');
 
+// 3. Load environment variables
 dotenv.config();
+
+// 4. Connect to Database
+const connectDB = require('./config/db');
 connectDB();
 
 const app = express();
@@ -17,6 +25,7 @@ app.use(cors({
 
 app.use(express.json());
 
+// API Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/products', require('./routes/productRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
