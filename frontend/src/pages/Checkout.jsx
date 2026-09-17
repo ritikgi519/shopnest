@@ -35,10 +35,18 @@ const Checkout = () => {
         }
       }
 
+      if (!window.Razorpay) {
+        const fallback = window.confirm("Razorpay SDK is not loaded or is blocked in this environment. Place test order directly?");
+        if (fallback) {
+          return bypassPayment();
+        }
+        return alert("Razorpay SDK not loaded.");
+      }
+
       const options = {
-        key: 'rzp_test_dummykey123', // Student dummy fallback
+        key: orderData.keyId || 'rzp_test_TbpeKdNcrO9ud9',
         amount: orderData.amount,
-        currency: orderData.currency,
+        currency: orderData.currency || 'INR',
         name: 'ShopNest',
         description: 'Test Transaction',
         order_id: orderData.id,
@@ -49,14 +57,23 @@ const Checkout = () => {
             body: JSON.stringify(response)
           });
           if (verifyRes.ok) {
+            const token = user?.token || user?.accessToken || localStorage.getItem('token');
+            const normalizedItems = cartItems.map(item => ({
+              productId: item.productId?._id || item.productId || item._id || item.id,
+              name: item.name || item.title || 'Product',
+              imageUrl: item.imageUrl || item.image || '',
+              price: Number(item.price || 0),
+              qty: Number(item.qty || item.quantity || 1)
+            }));
+
             const saveOrderRes = await fetch('/api/orders', {
               method: 'POST',
               headers: { 
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${user.token}`
+                ...(token ? { Authorization: `Bearer ${token}` } : {})
               },
               body: JSON.stringify({
-                items: cartItems,
+                items: normalizedItems,
                 totalAmount: totalPrice,
                 address,
                 paymentId: response.razorpay_payment_id
@@ -67,7 +84,8 @@ const Checkout = () => {
               dispatch(clearCart());
               navigate('/ordersuccess');
             } else {
-              alert('Order saving failed');
+              const errData = await saveOrderRes.json().catch(() => ({}));
+              alert(errData.message || 'Order saving failed');
             }
           } else {
             alert('Payment verification failed');
@@ -91,14 +109,23 @@ const Checkout = () => {
   };
 
   const bypassPayment = async () => {
+    const token = user?.token || user?.accessToken || localStorage.getItem('token');
+    const normalizedItems = cartItems.map(item => ({
+      productId: item.productId?._id || item.productId || item._id || item.id,
+      name: item.name || item.title || 'Product',
+      imageUrl: item.imageUrl || item.image || '',
+      price: Number(item.price || 0),
+      qty: Number(item.qty || item.quantity || 1)
+    }));
+
     const saveOrderRes = await fetch('/api/orders', {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`
+        ...(token ? { Authorization: `Bearer ${token}` } : {})
       },
       body: JSON.stringify({
-        items: cartItems,
+        items: normalizedItems,
         totalAmount: totalPrice,
         address,
         paymentId: 'bypass_txn_' + Date.now()
@@ -107,6 +134,9 @@ const Checkout = () => {
     if (saveOrderRes.ok) {
       dispatch(clearCart());
       navigate('/ordersuccess');
+    } else {
+      const errData = await saveOrderRes.json().catch(() => ({}));
+      alert(errData.message || 'Failed to place test order');
     }
   };
 

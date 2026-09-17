@@ -1,90 +1,283 @@
+/* ShopNest Modern Sleek Dark Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 50px;
-  background: rgba(9, 9, 11, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 14px 36px;
+  background: rgba(9, 9, 11, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+  gap: 24px;
 }
 
 .navbar-brand a {
-  font-size: 28px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -1px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
   display: flex;
   align-items: center;
   gap: 10px;
-  text-shadow: 0 2px 10px rgba(249, 115, 22, 0.3);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
 }
 
-.navbar-brand a::after {
-  content: '.';
+.navbar-brand a:hover {
+  opacity: 0.92;
+}
+
+.navbar-brand-dot {
   color: #f97316;
-  font-size: 36px;
+  font-size: 32px;
+  line-height: 0;
+  margin-left: -2px;
 }
 
+/* Integrated sleek search in dark theme */
+.nav-search-wrapper {
+  flex: 1 1 320px;
+  max-width: 520px;
+}
+
+.nav-search-box {
+  display: flex;
+  align-items: center;
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2px 6px 2px 16px;
+  transition: all 0.25s ease;
+}
+
+.nav-search-box:focus-within {
+  border-color: #f97316;
+  background: #121215;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
+.nav-search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fafafa;
+  font-size: 0.9rem;
+  padding: 8px 6px;
+  outline: none;
+}
+
+.nav-search-box input::placeholder {
+  color: #71717a;
+}
+
+.nav-search-box button {
+  background: #f97316;
+  color: #09090b;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.nav-search-box button:hover {
+  background: #ea580c;
+  transform: scale(1.05);
+}
+
+/* Nav links list */
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 22px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.navbar-links a, .navbar-links span {
-  font-size: 15px;
-  font-weight: 500;
-  color: #a1a1aa;
+.navbar-links a {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #d4d4d8;
+  text-decoration: none;
   position: relative;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .navbar-links a:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
-.navbar-links a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -6px;
-  left: 0;
+.nav-link-badge {
+  border-radius: 12px;
+  padding: 1px 7px;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.nav-cart-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.nav-cart-pill:hover {
+  border-color: #f97316;
+  background: rgba(249, 115, 22, 0.08);
+}
+
+.nav-cart-badge {
   background: #f97316;
-  transition: width 0.3s ease;
-  border-radius: 2px;
+  color: #09090b;
+  font-weight: 800;
+  font-size: 0.75rem;
+  border-radius: 10px;
+  padding: 1px 6px;
+  min-width: 16px;
+  text-align: center;
 }
 
-.navbar-links a:hover::after {
-  width: 100%;
+/* Account dropdown */
+.nav-account-container {
+  position: relative;
 }
 
-.btn-logout {
+.nav-account-btn {
   background: transparent;
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f4f4f5;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.88rem;
   font-weight: 600;
-  font-family: inherit;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
 }
 
-.btn-logout:hover {
-  background: rgba(239, 68, 68, 0.1);
-  border-color: #ef4444;
+.nav-account-btn:hover {
+  border-color: #f97316;
+  color: #ffffff;
+}
+
+.nav-account-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: 220px;
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2000;
+  animation: fadeInDown 0.15s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-account-item {
+  color: #d4d4d8;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.86rem;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-account-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.nav-btn-login {
+  background: #f97316;
+  color: #ffffff !important;
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(249, 115, 22, 0.3);
+}
+
+.nav-btn-login:hover {
+  background: #ea580c;
   transform: translateY(-1px);
 }
 
-@media (max-width: 768px) {
+.btn-logout {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 700;
+  margin-top: 4px;
+  transition: all 0.2s ease;
+  text-align: center;
+  width: 100%;
+}
+
+.btn-logout:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
   .navbar {
-    padding: 15px 20px;
-    flex-direction: column;
-    gap: 15px;
+    padding: 12px 20px;
+  }
+  .navbar-links {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 820px) {
+  .navbar {
+    flex-wrap: wrap;
+    padding: 12px 16px;
+  }
+  .nav-search-wrapper {
+    order: 3;
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin-top: 6px;
   }
 }

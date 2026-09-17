@@ -19,7 +19,10 @@ const OrderSuccess = () => {
       <p style={{ color: '#a1a1aa', fontSize: '1.2rem', marginBottom: '40px' }}>
         Thank you for your order. We have securely received your payment and will process your shipment shortly.
       </p>
-      <Link to="/shop" className="btn">Continue Shopping</Link>
+      <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <Link to="/orders" className="btn" style={{ background: '#f97316' }}>View & Track Orders</Link>
+        <Link to="/shop" className="btn" style={{ background: '#27272a', border: '1px solid rgba(255,255,255,0.1)' }}>Continue Shopping</Link>
+      </div>
     </div>
   );
 };

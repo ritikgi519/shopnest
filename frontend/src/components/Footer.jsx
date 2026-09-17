@@ -25,7 +25,7 @@ const Footer = () => {
         
         <div style={{ display: 'flex', gap: '20px' }}>
           <Link to="/about" style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>About Us</Link>
-          <Link to="/return" style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Return Policy</Link>
+          <Link to="/return" style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Returns & Refunds</Link>
           <Link to="/disclaimer" style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Disclaimer</Link>
         </div>
         

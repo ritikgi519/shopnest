@@ -57,10 +57,20 @@ const Profile = () => {
           <p style={{ color: '#a1a1aa', fontSize: '1.2rem', marginBottom: '15px' }}><strong>Email:</strong> {user.email}</p>
           <span style={badgeStyle}>Account Type: {user.role.toUpperCase()}</span>
         </div>
-        <button onClick={handleLogout} className="btn" style={{ background: '#ef4444', boxShadow: 'none' }}>Logout</button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <Link to="/wishlist" className="btn" style={{ background: 'rgba(244,63,94,0.15)', color: '#f43f5e', border: '1px solid rgba(244,63,94,0.3)', boxShadow: 'none' }}>
+            ♥ My Wishlist
+          </Link>
+          <button onClick={handleLogout} className="btn" style={{ background: '#ef4444', boxShadow: 'none' }}>Logout</button>
+        </div>
       </div>
 
-      <h3 style={{ color: '#f97316', marginBottom: '20px', fontSize: '1.5rem' }}>Order History</h3>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <h3 style={{ color: '#f97316', margin: 0, fontSize: '1.5rem' }}>Order History</h3>
+        <Link to="/orders" style={{ color: '#60a5fa', fontSize: '0.95rem', textDecoration: 'none', fontWeight: '500' }}>
+          Open Full Tracker & History →
+        </Link>
+      </div>
       {loading ? (
         <p style={{ color: '#a1a1aa' }}>Fetching your orders...</p>
       ) : orders.length === 0 ? (

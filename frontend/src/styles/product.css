@@ -155,3 +155,28 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ========================================================
+   MODERN SLEEK DARK HOMEPAGE STYLES (PREVIOUS LOOK)
+   ======================================================== */
+
+.curated-card:hover {
+  transform: translateY(-4px);
+  border-color: #f97316 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(249, 115, 22, 0.15);
+}
+
+.deal-item-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(249, 115, 22, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    padding: 36px 20px !important;
+  }
+  .hero-banner h1 {
+    font-size: 2.2rem !important;
+  }
+}
