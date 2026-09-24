@@ -23,11 +23,14 @@ const handleCreateOrder = async (req, res) => {
     const { amount } = req.body; // amount in INR
     const rzp = getRazorpay();
 
+    const numAmount = Number(amount) || 1;
+    const paiseAmount = Math.max(100, Math.round(numAmount * 100)); // minimum 100 paise (₹1.00)
+
     if (!rzp) {
       // Mock order if Razorpay keys are not configured
       const mockOrder = {
         id: `order_mock_${Date.now()}`,
-        amount: Math.round((amount || 1) * 100),
+        amount: paiseAmount,
         currency: 'INR',
         receipt: `receipt_${Date.now()}`,
         status: 'created'
@@ -44,7 +47,7 @@ const handleCreateOrder = async (req, res) => {
     }
 
     const options = {
-      amount: Math.round(amount * 100), // convert to paise
+      amount: paiseAmount,
       currency: 'INR',
       receipt: `receipt_${Date.now()}`,
     };

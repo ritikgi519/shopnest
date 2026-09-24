@@ -10,34 +10,7 @@
   <meta property="og:title" content="ShopNest" />
   <meta property="og:description" content="Full-Stack MERN E-Commerce Platform" />
   <title>ShopNest</title>
-  <script>
-    (function() {
-      try {
-        var currentFetch = window.fetch ? window.fetch.bind(window) : null;
-        Object.defineProperty(window, 'fetch', {
-          get: function() {
-            return currentFetch;
-          },
-          set: function(fn) {
-            currentFetch = fn;
-          },
-          configurable: true,
-          enumerable: true
-        });
-      } catch (e) {
-        try {
-          var origFetch = window.fetch;
-          Object.defineProperty(window, 'fetch', {
-            value: origFetch,
-            writable: true,
-            configurable: true,
-            enumerable: true
-          });
-        } catch (err) {}
-      }
-    })();
-  </script>
-  <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 
 <body>

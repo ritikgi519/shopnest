@@ -27,6 +27,12 @@ export const WishlistProvider = ({ children }) => {
         }
       });
 
+      if (res.status === 401) {
+        setWishlist([]);
+        setWishlistIds([]);
+        return;
+      }
+
       if (res.ok) {
         const data = await res.json();
         const validWishlist = Array.isArray(data.wishlist) ? data.wishlist : [];

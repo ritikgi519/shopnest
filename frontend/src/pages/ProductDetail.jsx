@@ -107,9 +107,12 @@ const ProductDetail = () => {
     if (product) {
       dispatch(addToCart({
         productId: product._id,
+        _id: product._id,
         name: product.name,
         price: product.price,
-        imageUrl: product.imageUrl,
+        image: product.imageUrl || product.image,
+        imageUrl: product.imageUrl || product.image,
+        category: product.category,
         qty: 1
       }));
       alert('Successfully added to your cart!');
@@ -516,9 +519,11 @@ const ProductDetail = () => {
                 dispatch(
                   addToCart({
                     productId: item._id || item.id,
+                    _id: item._id || item.id,
                     name: item.name,
                     price: isDiscountEligible ? Number((item.price * 0.9).toFixed(2)) : item.price,
-                    imageUrl: item.imageUrl,
+                    image: item.imageUrl || item.image,
+                    imageUrl: item.imageUrl || item.image,
                     qty: 1
                   })
                 );

@@ -4,17 +4,28 @@ const Order = require('../models/Order');
 const cloudinary = require('../config/cloudinary');
 const mockStore = require('../data/mockStore');
 
+const normalizeProduct = (p) => {
+  if (!p) return p;
+  const obj = p.toObject ? p.toObject() : { ...p };
+  const img = obj.imageUrl || obj.image || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080';
+  obj.imageUrl = img;
+  obj.image = img;
+  return obj;
+};
+
 const getProducts = async (req, res) => {
   try {
     if (mongoose.connection.readyState === 1) {
       const products = await Product.find({});
       if (products && products.length > 0) {
-        return res.json(products);
+        return res.json(products.map(normalizeProduct));
       }
     }
-    res.json(mockStore.getProducts());
+    const fallbackProducts = mockStore.getProducts();
+    res.json(fallbackProducts.map(normalizeProduct));
   } catch (error) {
-    res.json(mockStore.getProducts());
+    const fallbackProducts = mockStore.getProducts();
+    res.json(fallbackProducts.map(normalizeProduct));
   }
 };
 
@@ -23,18 +34,18 @@ const getProductById = async (req, res) => {
     if (mongoose.connection.readyState === 1) {
       const product = await Product.findById(req.params.id);
       if (product) {
-        return res.json(product);
+        return res.json(normalizeProduct(product));
       }
     }
     const fallback = mockStore.getProductById(req.params.id);
     if (fallback) {
-      return res.json(fallback);
+      return res.json(normalizeProduct(fallback));
     }
     res.status(404).json({ message: 'Product not found' });
   } catch (error) {
     const fallback = mockStore.getProductById(req.params.id);
     if (fallback) {
-      return res.json(fallback);
+      return res.json(normalizeProduct(fallback));
     }
     res.status(404).json({ message: 'Product not found' });
   }

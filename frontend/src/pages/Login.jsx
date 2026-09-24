@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import '../styles/auth.css';
 
@@ -12,6 +12,8 @@ const Login = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectUrl = new URLSearchParams(location.search).get('redirect') || '/';
 
   const handleLoginSubmit = async (emailToUse, passwordToUse) => {
     setErrorMessage('');
@@ -34,7 +36,7 @@ const Login = () => {
         setSuccessMessage(`Welcome back, ${data.name || 'User'}!`);
         login(data);
         setTimeout(() => {
-          navigate('/');
+          navigate(redirectUrl);
         }, 600);
       } else {
         setErrorMessage(data.message || 'Invalid email or password. Please try again.');

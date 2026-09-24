@@ -81,6 +81,12 @@ const Navbar = () => {
         </li>
 
         <li>
+          <Link to="/catalog" id="nav-link-catalog" title="Product Catalog">
+            Catalog
+          </Link>
+        </li>
+
+        <li>
           <Link to="/return" id="nav-link-returns" title="Returns & Refunds Hub">
             <span>Returns</span>
           </Link>

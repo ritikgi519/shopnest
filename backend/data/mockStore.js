@@ -37,6 +37,7 @@ const products = [
     category: 'Electronics',
     stock: 15,
     imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
     ratings: 4.8,
     numReviews: 2,
     reviews: [

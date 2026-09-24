@@ -44,9 +44,11 @@ const Compare = () => {
     dispatch(
       addToCart({
         productId: product._id || product.id,
+        _id: product._id || product.id,
         name: product.name,
         price: product.price,
-        imageUrl: product.imageUrl,
+        image: product.imageUrl || product.image,
+        imageUrl: product.imageUrl || product.image,
         qty: 1
       })
     );
@@ -60,9 +62,11 @@ const Compare = () => {
         dispatch(
           addToCart({
             productId: product._id || product.id,
+            _id: product._id || product.id,
             name: product.name,
             price: product.price,
-            imageUrl: product.imageUrl,
+            image: product.imageUrl || product.image,
+            imageUrl: product.imageUrl || product.image,
             qty: 1
           })
         );
